@@ -1,4 +1,5 @@
 import {Document, model, Schema} from 'mongoose'
+import {IUserModel} from "./UserModel";
 
 export enum TodoStatus {
     COMPLETED,
@@ -9,6 +10,7 @@ export enum TodoStatus {
 export interface ITodoModel {
     name: string,
     status: TodoStatus,
+    user: IUserModel,
     description?: string,
     createdAt?: Date,
     updatedAt?: Date,
@@ -29,6 +31,10 @@ const schema = new Schema({
     },
     description: {
         type: String
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
     },
     createdAt: {
         type: Date,
