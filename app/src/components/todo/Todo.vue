@@ -6,7 +6,7 @@
                     <span class="todo__text">
                         {{ todo.name }}
                     </span>
-                    <v-chip outlined :color="color" small class="ml-3">
+                    <v-chip outlined :color="color" x-small class="ml-3">
                         {{status}}
                     </v-chip>
                 </div>

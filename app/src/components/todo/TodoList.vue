@@ -9,7 +9,7 @@
             </v-list-item>
         </template>
         <template v-else>
-            Cadastre uma todo
+            Nenhuma Todo cadastrada
         </template>
     </v-list-item-group>
 </template>
@@ -20,6 +20,7 @@
 
     export default {
         name: "TodoList",
+        props: ['todos'],
         components: {Todo},
         methods: {
             ...mapMutations(['setTodo']),
@@ -28,7 +29,7 @@
             }
         },
         computed: {
-            ...mapGetters(['todos', 'todo']),
+
         },
 
     }

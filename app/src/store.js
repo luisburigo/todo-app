@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import {allTodos, createTodo, deleteTodo, updateTodo} from "./services/todo.service";
+import {TODO_STATUS} from "./constants";
 
 Vue.use(Vuex);
 
@@ -62,6 +63,8 @@ export default new Vuex.Store({
     },
     getters: {
         todos: state => state.todos,
-        todo: state => state.todo
+        todo: state => state.todo,
+        workingTodos: state => state.todos.filter(todo => todo.status === TODO_STATUS.WORKING),
+        completedTodos: state => state.todos.filter(todo => todo.status === TODO_STATUS.COMPLETED),
     }
 })

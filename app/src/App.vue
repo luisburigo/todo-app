@@ -11,7 +11,36 @@
                             </v-toolbar>
                             <v-card-text>
                                 <TodoForm/>
-                                <TodoList @openDialog="openDialog"/>
+                                <v-tabs v-model="tabs">
+                                    <v-tab>All todos</v-tab>
+                                    <v-tab>Working todos</v-tab>
+                                    <v-tab>Completed todos</v-tab>
+
+                                    <v-tabs-items v-model="tabs">
+                                        <v-tab-item>
+                                            <v-spacer></v-spacer>
+                                            <TodoList
+                                                    :todos="todos"
+                                                    @openDialog="openDialog"
+                                            />
+                                        </v-tab-item>
+                                        <v-tab-item>
+                                            <v-spacer></v-spacer>
+                                            <TodoList
+                                                    :todos="workingTodos"
+                                                    @openDialog="openDialog"
+                                            />
+                                        </v-tab-item>
+                                        <v-tab-item>
+                                            <v-spacer></v-spacer>
+                                            <TodoList
+                                                    :todos="completedTodos"
+                                                    @openDialog="openDialog"
+                                            />
+                                        </v-tab-item>
+                                    </v-tabs-items>
+                                </v-tabs>
+
 
                                 <!-- Modal edit Todo -->
                                 <v-dialog v-model="dialog" width="500" persistent>
@@ -24,7 +53,7 @@
                                             <v-text-field outlined
                                                           v-model="todo.name"
                                                           label="Nome"/>
-                                            <v-text-field outlined
+                                            <v-textarea outlined
                                                           v-model="todo.description"
                                                           label="Descrição"/>
                                             <v-btn-toggle v-model="todo.status">
@@ -70,7 +99,7 @@
 <script>
     import TodoForm from './components/todo/TodoForm';
     import TodoList from "./components/todo/TodoList";
-    import {mapActions, mapState} from "vuex";
+    import {mapActions, mapGetters, mapState} from "vuex";
     import {TODO_STATUS} from "./constants";
 
     export default {
@@ -83,6 +112,7 @@
             return {
                 dialog: false,
                 todo: {},
+                tabs: 0,
                 TODO_STATUS
             }
         },
@@ -98,6 +128,7 @@
             }
         },
         computed: {
+            ...mapGetters(['todos', 'workingTodos', 'completedTodos']),
             ...mapState({
                 updatingTodo: state => state.requestState.updating
             })
