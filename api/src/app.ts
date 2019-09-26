@@ -1,10 +1,11 @@
 import {Request, Response} from "express";
 
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 import * as express from "express"
 import {connect} from "mongoose"
-import dotenv from "dotenv"
+import {config} from "dotenv"
 import {resolve} from "path"
 import {todoRouter} from "./routes/TodoRoutes";
 
@@ -14,8 +15,10 @@ class App {
 
     constructor() {
         this.express = express();
+
+        this.express.use(cors());
         this.express.use(bodyParser.json());
-        this.express.use(bodyParser.urlencoded({extended: true}))
+        this.express.use(bodyParser.urlencoded({extended: true}));
     }
 
     init() {
@@ -42,7 +45,7 @@ class App {
     }
 
     private initEnvVars() {
-        dotenv.config({
+        config({
             path: resolve(__dirname, '..', '.env')
         });
     }
