@@ -8,6 +8,7 @@ import {connect} from "mongoose"
 import {config} from "dotenv"
 import {resolve} from "path"
 import {todoRouter} from "./routes/TodoRoutes";
+import {userRouter} from "./routes/UserRoutes";
 
 class App {
 
@@ -31,7 +32,8 @@ class App {
     }
 
     private initRoutes() {
-        this.express.use('/todo', todoRouter)
+        this.express.use('/todo', todoRouter);
+        this.express.use('/user', userRouter);
     }
 
     private initMiddlewares() {
