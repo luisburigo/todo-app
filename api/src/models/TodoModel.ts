@@ -42,9 +42,4 @@ const schema = new Schema({
     },
 });
 
-schema.pre('save', function (next) {
-   console.log(this);
-   next();
-});
-
 export const TodoSchema = model<ITodoSchema>('todo', schema);
