@@ -8,9 +8,9 @@
                 <Todo :todo="todo"/>
             </v-list-item>
         </template>
-        <template v-else>
-            Nenhuma Todo cadastrada
-        </template>
+        <div class="empty" v-else>
+            {{messageEmpty}}
+        </div>
     </v-list-item-group>
 </template>
 
@@ -20,7 +20,7 @@
 
     export default {
         name: "TodoList",
-        props: ['todos'],
+        props: ['todos', 'messageEmpty'],
         components: {Todo},
         methods: {
             ...mapMutations(['setTodo']),
@@ -36,5 +36,8 @@
 </script>
 
 <style scoped>
-
+    .empty {
+        padding: 15px 15px 0;
+        text-align: center;
+    }
 </style>

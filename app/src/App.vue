@@ -20,6 +20,7 @@
                                         <v-tab-item>
                                             <v-spacer></v-spacer>
                                             <TodoList
+                                                    message-empty="Nenhuma todo cadastrada"
                                                     :todos="todos"
                                                     @openDialog="openDialog"
                                             />
@@ -27,6 +28,7 @@
                                         <v-tab-item>
                                             <v-spacer></v-spacer>
                                             <TodoList
+                                                    message-empty="Nenhuma todo sendo executada"
                                                     :todos="workingTodos"
                                                     @openDialog="openDialog"
                                             />
@@ -34,6 +36,7 @@
                                         <v-tab-item>
                                             <v-spacer></v-spacer>
                                             <TodoList
+                                                    message-empty="Nenhuma todo completada"
                                                     :todos="completedTodos"
                                                     @openDialog="openDialog"
                                             />
