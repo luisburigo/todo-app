@@ -20,6 +20,7 @@
                                             Editar todo
                                         </v-card-title>
                                         <v-card-text>
+                                            <v-spacer></v-spacer>
                                             <v-text-field outlined
                                                           v-model="todo.name"
                                                           label="Nome"/>

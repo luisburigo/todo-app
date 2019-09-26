@@ -24,7 +24,7 @@
         methods: {
             ...mapMutations(['setTodo']),
             openModal(todo) {
-                this.$emit('openDialog', todo)
+                this.$emit('openDialog', {...todo})
             }
         },
         computed: {

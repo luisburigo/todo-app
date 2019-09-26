@@ -6,14 +6,14 @@
                     <span class="todo__text">
                         {{ todo.name }}
                     </span>
-                    <v-chip :color="color" small class="ml-3">
+                    <v-chip outlined :color="color" small class="ml-3">
                         {{status}}
                     </v-chip>
                 </div>
                 <div class="todo__buttons">
                     <v-btn
                             @click.prevent.stop="workTodo(todo)"
-                            elevation="0"
+                            elevation="1"
                             color="primary"
                             small
                             v-if="todo.status === TODO_STATUS.NOT_COMPLETED"
@@ -22,12 +22,12 @@
                     </v-btn>
                     <v-btn
                             @click.prevent.stop="compleTodo(todo)"
-                            elevation="0"
+                            elevation="1"
                             color="success"
-                            fab x-small
+                            small
                             v-if="todo.status === TODO_STATUS.WORKING"
                            class="mr-2">
-                        <v-icon>mdi-check</v-icon>
+                        Complete
                     </v-btn>
                     <v-btn @click.prevent.stop="deleteTodo(todo)" color="error" fab x-small outlined>
                         <v-icon>mdi-delete</v-icon>
