@@ -11,7 +11,7 @@
                             </v-toolbar>
                             <v-card-text>
                                 <TodoForm/>
-                                <v-tabs v-model="tabs">
+                                <v-tabs fixed-tabs v-model="tabs">
                                     <v-tab>All todos</v-tab>
                                     <v-tab>Working todos</v-tab>
                                     <v-tab>Completed todos</v-tab>
@@ -41,6 +41,14 @@
                                                     @openDialog="openDialog"
                                             />
                                         </v-tab-item>
+                                        <v-tab-item>
+                                            <v-spacer></v-spacer>
+                                            <TodoList
+                                                    message-empty="Nenhuma todo não completada"
+                                                    :todos="notCompletedTodos"
+                                                    @openDialog="openDialog"
+                                            />
+                                        </v-tab-item>
                                     </v-tabs-items>
                                 </v-tabs>
 
@@ -57,8 +65,8 @@
                                                           v-model="todo.name"
                                                           label="Nome"/>
                                             <v-textarea outlined
-                                                          v-model="todo.description"
-                                                          label="Descrição"/>
+                                                        v-model="todo.description"
+                                                        label="Descrição"/>
                                             <v-btn-toggle v-model="todo.status">
                                                 <v-btn :value="TODO_STATUS.WORKING" color="primary" text small>
                                                     Working
@@ -131,7 +139,7 @@
             }
         },
         computed: {
-            ...mapGetters(['todos', 'workingTodos', 'completedTodos']),
+            ...mapGetters(['todos', 'workingTodos', 'completedTodos', 'notCompletedTodos']),
             ...mapState({
                 updatingTodo: state => state.requestState.updating
             })

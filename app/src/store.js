@@ -66,5 +66,6 @@ export default new Vuex.Store({
         todo: state => state.todo,
         workingTodos: state => state.todos.filter(todo => todo.status === TODO_STATUS.WORKING),
         completedTodos: state => state.todos.filter(todo => todo.status === TODO_STATUS.COMPLETED),
+        notCompletedTodos: state => state.todos.filter(todo => todo.status === TODO_STATUS.NOT_COMPLETED),
     }
 })

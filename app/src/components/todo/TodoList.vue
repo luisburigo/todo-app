@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import {mapMutations, mapGetters} from "vuex";
+    import {mapMutations} from "vuex";
     import Todo from "./Todo";
 
     export default {
@@ -28,10 +28,6 @@
                 this.$emit('openDialog', {...todo})
             }
         },
-        computed: {
-
-        },
-
     }
 </script>
 
