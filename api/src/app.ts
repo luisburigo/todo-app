@@ -4,11 +4,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 import * as express from "express"
-import {connect} from "mongoose"
-import {config} from "dotenv"
-import {resolve} from "path"
 import {todoRouter} from "./routes/TodoRoutes";
 import {userRouter} from "./routes/UserRoutes";
+import {Bootstrap} from "./Bootstrap";
 
 class App {
 
@@ -23,8 +21,7 @@ class App {
     }
 
     init() {
-        this.initEnvVars();
-        this.initDb();
+        Bootstrap.init();
         this.initRoutes();
         this.initMiddlewares();
 
@@ -44,28 +41,6 @@ class App {
                 })
             }
         })
-    }
-
-    private initEnvVars() {
-        config({
-            path: resolve(__dirname, '..', '.env')
-        });
-    }
-
-    private async initDb() {
-        const {DB_USER, DB_PASS, DB_HOST} = process.env;
-        let host = DB_HOST;
-
-        host = host.replace('<dbuser>', DB_USER);
-        host = host.replace('<dbpassword>', DB_PASS);
-
-        try {
-            await connect(host, {
-                useNewUrlParser: false
-            })
-        } catch (e) {
-            console.warn(e)
-        }
     }
 }
 
